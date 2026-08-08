@@ -1,0 +1,1746 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Asia Trip Visual Itinerary | Aug 20-30, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --page: #0b111c;
+      --paper: #131c2b;
+      --paper-2: #17233a;
+      --ink: #eef3f9;
+      --muted: #93a2b6;
+      --line: rgba(255, 255, 255, 0.09);
+      --soft-line: rgba(255, 255, 255, 0.06);
+      --teal: #34d1b6;
+      --teal-soft: rgba(52, 209, 182, 0.14);
+      --coral: #ff6f59;
+      --coral-soft: rgba(255, 111, 89, 0.15);
+      --gold: #f3b23a;
+      --gold-soft: rgba(243, 178, 58, 0.15);
+      --blue: #5ea4ff;
+      --blue-soft: rgba(94, 164, 255, 0.14);
+      --violet: #a98ef5;
+      --violet-soft: rgba(169, 142, 245, 0.15);
+      --shadow: 0 14px 38px rgba(2, 6, 12, 0.5);
+      --display: "Fraunces", Georgia, "Times New Roman", serif;
+      --body: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    /* Ambient lantern glow behind everything */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(560px 420px at 12% -6%, rgba(52, 209, 182, 0.13), transparent 65%),
+        radial-gradient(620px 480px at 92% 12%, rgba(255, 111, 89, 0.11), transparent 65%),
+        radial-gradient(700px 560px at 50% 108%, rgba(243, 178, 58, 0.10), transparent 70%);
+    }
+
+    button, a { font: inherit; }
+    a { color: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    /* ---------- Masthead ---------- */
+    .masthead {
+      position: relative;
+      overflow: hidden;
+      padding: 46px 42px 38px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      background:
+        radial-gradient(900px 420px at 85% -20%, rgba(255, 111, 89, 0.16), transparent 60%),
+        radial-gradient(700px 420px at -10% 110%, rgba(52, 209, 182, 0.14), transparent 60%),
+        linear-gradient(160deg, #101b2e 0%, #0d1524 55%, #121628 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .masthead::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      bottom: -200px;
+      width: 480px;
+      height: 480px;
+      border: 70px solid rgba(255, 255, 255, 0.04);
+      border-radius: 50%;
+    }
+
+    .masthead-content { position: relative; z-index: 1; }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 12px;
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 6.4vw, 5rem);
+      line-height: 1.0;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      background: linear-gradient(95deg, #ffffff 20%, #ffd9a8 55%, #ff9a82 85%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      max-width: 640px;
+      margin-bottom: 26px;
+      color: #c2d0dd;
+      font-size: 1.05rem;
+    }
+
+    /* Animated flight arc */
+    .route-arc { max-width: 760px; margin: 6px 0 8px; }
+
+    .route-arc svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+    .arc-path {
+      fill: none;
+      stroke: url(#arcGrad);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: drawArc 2.4s 0.5s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes drawArc { to { stroke-dashoffset: 0; } }
+
+    .arc-stop { opacity: 0; animation: stopIn 0.5s ease forwards; }
+    .arc-stop circle { stroke: var(--page); stroke-width: 3; }
+    .arc-stop text {
+      fill: #cfdae6;
+      font-family: var(--body);
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-anchor: middle;
+    }
+    .arc-stop .arc-sub {
+      fill: #7c8ca0;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    @keyframes stopIn { to { opacity: 1; } }
+
+    .arc-plane {
+      offset-path: path("M 10 66 C 100 18, 190 18, 265 44 C 330 66, 360 66, 420 44 C 480 22, 520 22, 570 40 C 610 54, 640 60, 690 52");
+      offset-rotate: auto;
+      animation: fly 9s 3s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes fly {
+      0% { offset-distance: 0%; opacity: 0; }
+      4% { opacity: 1; }
+      96% { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin: 18px 0 26px;
+    }
+
+    .countdown-label {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .countdown-tiles { display: flex; gap: 8px; }
+
+    .cd-tile {
+      min-width: 64px;
+      padding: 8px 10px 7px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .cd-tile strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.7rem;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cd-tile span {
+      display: block;
+      margin-top: 2px;
+      color: #8ea0b4;
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .trip-live {
+      display: none;
+      padding: 10px 14px;
+      border: 1px solid rgba(52, 209, 182, 0.4);
+      border-radius: 999px;
+      background: rgba(52, 209, 182, 0.12);
+      color: #a9efe2;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .trip-live .pulse {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 0 rgba(52, 209, 182, 0.6);
+      animation: pulse 1.8s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 9px rgba(52, 209, 182, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(52, 209, 182, 0); }
+    }
+
+    .masthead-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      max-width: 700px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .masthead-stat { padding: 18px 18px 0 0; }
+
+    .masthead-stat strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.6rem;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .masthead-stat span {
+      display: block;
+      margin-top: 5px;
+      color: #8598ab;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* ---------- Toolbar ---------- */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 16px 0 22px;
+      padding: 10px 12px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      background: rgba(13, 19, 31, 0.82);
+      box-shadow: 0 10px 24px rgba(2, 6, 12, 0.45);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .scroll-progress {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 0;
+      height: 3px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .scroll-progress i {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold), var(--violet));
+      transition: width 80ms linear;
+    }
+
+    .jump-links { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .jump-links a, .print-button, .filter-chip {
+      min-height: 36px;
+      padding: 7px 11px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: transparent;
+      color: #b9c6d4;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .jump-links a:hover, .jump-links a:focus-visible,
+    .print-button:hover, .print-button:focus-visible,
+    .filter-chip:hover, .filter-chip:focus-visible {
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .jump-links a.active {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .toolbar-right { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+    .filter-chip[aria-pressed="true"] { color: #0b111c; font-weight: 800; }
+    .filter-chip.f-all[aria-pressed="true"] { background: #e8eef5; border-color: #e8eef5; }
+    .filter-chip.f-travel[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); }
+    .filter-chip.f-fixed[aria-pressed="true"] { background: var(--coral); border-color: var(--coral); }
+    .filter-chip.f-flexible[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); }
+
+    .print-button {
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* ---------- Overview ---------- */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .overview-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--paper-2), var(--paper));
+      box-shadow: var(--shadow);
+    }
+
+    .section-kicker {
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .overview-card h2, .itinerary-heading h2 {
+      margin-bottom: 18px;
+      font-family: var(--display);
+      font-size: 1.4rem;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    .route-visual {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: start;
+      position: relative;
+      padding-top: 10px;
+    }
+
+    .route-visual::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 11%;
+      right: 11%;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold), var(--violet));
+      filter: drop-shadow(0 0 6px rgba(255, 150, 90, 0.35));
+    }
+
+    .route-stop { position: relative; z-index: 1; text-align: center; }
+
+    .route-dot {
+      width: 26px;
+      height: 26px;
+      margin: 0 auto 10px;
+      border: 6px solid var(--paper);
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 2px currentColor, 0 0 14px currentColor;
+      transition: transform 0.25s ease;
+    }
+
+    .route-stop:hover .route-dot { transform: scale(1.2); }
+
+    .route-stop:nth-child(1) { color: var(--teal); }
+    .route-stop:nth-child(2) { color: var(--coral); }
+    .route-stop:nth-child(3) { color: var(--gold); }
+    .route-stop:nth-child(4) { color: var(--violet); }
+
+    .route-stop strong, .route-stop span { display: block; }
+    .route-stop strong { color: var(--ink); font-size: 0.95rem; }
+    .route-stop span { margin-top: 2px; color: var(--muted); font-size: 0.78rem; }
+
+    .reservation-list { margin: 0; padding: 0; list-style: none; }
+
+    .reservation-list li {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      gap: 12px;
+      padding: 11px 0;
+      border-top: 1px solid var(--soft-line);
+      transition: transform 0.2s ease;
+    }
+
+    .reservation-list li:hover { transform: translateX(4px); }
+    .reservation-list li:first-child { border-top: 0; padding-top: 0; }
+
+    .reservation-date {
+      color: var(--coral);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .reservation-copy strong, .reservation-copy span { display: block; }
+    .reservation-copy strong { font-size: 0.91rem; }
+    .reservation-copy span { color: var(--muted); font-size: 0.8rem; }
+
+    /* ---------- Itinerary heading ---------- */
+    .itinerary-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 34px 0 16px;
+    }
+
+    .itinerary-heading h2 { margin-bottom: 0; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .legend-dot.travel { background: var(--blue); box-shadow: 0 0 8px var(--blue); }
+    .legend-dot.fixed { background: var(--coral); box-shadow: 0 0 8px var(--coral); }
+    .legend-dot.flexible { background: var(--teal); box-shadow: 0 0 8px var(--teal); }
+
+    /* ---------- Day cards ---------- */
+    .days {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .day-card {
+      --accent: var(--blue);
+      scroll-margin-top: 92px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--paper-2), var(--paper) 120px);
+      box-shadow: var(--shadow);
+      break-inside: avoid;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .day-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+      box-shadow: 0 18px 44px rgba(2, 6, 12, 0.6), 0 0 34px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+
+    .day-card.taipei { --accent: var(--teal); }
+    .day-card.seoul { --accent: var(--coral); }
+    .day-card.kyoto { --accent: var(--gold); }
+    .day-card.travel-day { --accent: var(--blue); }
+    .day-card.homebound { --accent: var(--violet); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(22px); }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .day-header {
+      display: grid;
+      grid-template-columns: 66px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--soft-line);
+    }
+
+    .date-tile {
+      padding-right: 14px;
+      border-right: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .date-tile span, .date-tile strong { display: block; }
+
+    .date-tile span {
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .date-tile strong {
+      font-family: var(--display);
+      font-size: 1.95rem;
+      line-height: 1;
+    }
+
+    .day-title h3 {
+      margin-bottom: 3px;
+      font-family: var(--display);
+      font-size: 1.14rem;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    .day-title p { margin-bottom: 0; color: var(--muted); font-size: 0.82rem; }
+
+    .day-number {
+      align-self: start;
+      color: #6d7d90;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .schedule { padding: 8px 20px 14px; }
+
+    .event {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 14px;
+      padding: 13px 0;
+      border-top: 1px solid var(--soft-line);
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    .event:first-child { border-top: 0; }
+    .event:hover { transform: translateX(4px); }
+
+    .event-time {
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .event-body { min-width: 0; }
+
+    .event-topline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 3px;
+    }
+
+    .event-body strong { font-size: 0.91rem; }
+    .event-body p { margin-bottom: 0; color: var(--muted); font-size: 0.83rem; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 21px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.63rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .tag.travel { background: var(--blue-soft); color: #9cc5ff; box-shadow: inset 0 0 0 1px rgba(94, 164, 255, 0.35); }
+    .tag.fixed { background: var(--coral-soft); color: #ffa595; box-shadow: inset 0 0 0 1px rgba(255, 111, 89, 0.4); }
+    .tag.flexible { background: var(--teal-soft); color: #7ce6d1; box-shadow: inset 0 0 0 1px rgba(52, 209, 182, 0.35); }
+    .tag.hotel { background: var(--violet-soft); color: #c9b6ff; box-shadow: inset 0 0 0 1px rgba(169, 142, 245, 0.4); }
+
+    /* Filtering (dims non-matching events) */
+    body[data-filter="travel"] .event:not(:has(.tag.travel)),
+    body[data-filter="fixed"] .event:not(:has(.tag.fixed)),
+    body[data-filter="flexible"] .event:not(:has(.tag.flexible)) {
+      opacity: 0.22;
+    }
+
+    .note-strip {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      margin: 0 20px 18px;
+      padding: 10px 12px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      background: var(--gold-soft);
+      color: #f4d9a0;
+      font-size: 0.8rem;
+    }
+
+    .note-strip strong { flex: 0 0 auto; color: #ffe4ad; }
+
+    .trip-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 24px;
+      padding: 18px 4px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    /* ---------- Market stall-guide layer ---------- */
+    .guide-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 5px 11px;
+      border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 13%, transparent);
+      color: var(--ink);
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .guide-open::after { content: "\2197"; font-size: 0.85em; }
+
+    .guide-open:hover, .guide-open:focus-visible {
+      background: color-mix(in srgb, var(--accent) 28%, transparent);
+      box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 32%, transparent);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    body.sheet-open { overflow: hidden; }
+
+    .sheet-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 24px 12px 0;
+      background: rgba(4, 8, 14, 0.68);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .sheet-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .sheet {
+      --accent: var(--teal);
+      position: relative;
+      width: min(780px, 100%);
+      max-height: 88vh;
+      max-height: 88dvh;
+      overflow-y: auto;
+      padding: 24px 28px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 4px solid var(--accent);
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(180deg, var(--paper-2), var(--paper) 180px);
+      box-shadow: 0 -18px 60px rgba(2, 6, 12, 0.7);
+      transform: translateY(26px);
+      transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .sheet-overlay.open .sheet { transform: none; }
+    .sheet.taipei { --accent: var(--teal); }
+    .sheet.seoul { --accent: var(--coral); }
+
+    .sheet-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      z-index: 2;
+      margin: -6px -10px 0 12px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      background: rgba(23, 35, 58, 0.9);
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .sheet-close:hover, .sheet-close:focus-visible { background: rgba(255, 255, 255, 0.16); outline: none; }
+
+    .guide-kicker {
+      margin: 0 0 4px;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .sheet h2 {
+      margin: 0 0 10px;
+      font-family: var(--display);
+      font-size: 1.55rem;
+      font-weight: 600;
+    }
+
+    .guide-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+
+    .meta-chip {
+      padding: 4px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #c2d0dd;
+      font-size: 0.73rem;
+      font-weight: 600;
+    }
+
+    .guide-lede { color: #c2d0dd; font-size: 0.9rem; }
+
+    .sheet h3 {
+      margin: 18px 0 8px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .stall-list { margin: 0; padding: 0; list-style: none; counter-reset: stall; }
+
+    .stall-list li {
+      position: relative;
+      padding: 11px 0 11px 38px;
+      border-top: 1px solid var(--soft-line);
+      counter-increment: stall;
+    }
+
+    .stall-list li:first-child { border-top: 0; }
+
+    .stall-list li::before {
+      content: counter(stall);
+      position: absolute;
+      left: 0;
+      top: 13px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+      border-radius: 50%;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stall-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+    .stall-top strong { font-size: 0.92rem; }
+    .stall-price { color: var(--gold); font-size: 0.73rem; font-weight: 800; white-space: nowrap; }
+    .stall-star { color: var(--gold); font-size: 0.8rem; }
+    .stall-list p { margin: 0; color: var(--muted); font-size: 0.82rem; }
+
+    .guide-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 6px; }
+
+    .guide-block {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .guide-block h4 {
+      margin: 0 0 6px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .guide-block p { margin: 0; color: var(--muted); font-size: 0.82rem; }
+
+    .guide-warn {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-left: 3px solid var(--coral);
+      border-radius: 0 8px 8px 0;
+      background: var(--coral-soft);
+      color: #ffc0b3;
+      font-size: 0.8rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+      }
+      .arc-path { stroke-dashoffset: 0; animation: none; }
+      .arc-stop { opacity: 1; animation: none; }
+      .arc-plane { display: none; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 900px) {
+      .masthead-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-grid, .days { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 20px, 1180px); padding-top: 10px; }
+      .masthead { padding: 28px 22px; }
+      h1 { font-size: 2.7rem; }
+      .route-arc { margin-top: 0; }
+      .masthead-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .countdown { gap: 10px; }
+      .cd-tile { min-width: 56px; padding: 7px 8px 6px; }
+      .cd-tile strong { font-size: 1.4rem; }
+      .toolbar { flex-direction: column; align-items: stretch; gap: 8px; }
+      .toolbar-right { justify-content: flex-start; }
+      .jump-links a, .print-button, .filter-chip { min-height: 32px; padding: 5px 9px; font-size: 0.78rem; }
+      .overview-card { padding: 20px 16px; }
+      .route-stop strong { font-size: 0.78rem; }
+      .route-stop span { font-size: 0.69rem; }
+      .itinerary-heading { display: block; }
+      .legend { justify-content: flex-start; margin-top: 9px; }
+      .day-header { grid-template-columns: 58px 1fr; gap: 12px; padding: 16px; }
+      .day-number { display: none; }
+      .schedule { padding: 7px 16px 12px; }
+      .event { grid-template-columns: 72px 1fr; gap: 10px; }
+      .note-strip { margin-right: 16px; margin-left: 16px; }
+      .trip-footer { display: block; }
+      .guide-cols { grid-template-columns: 1fr; }
+      .sheet { padding: 20px 16px 28px; }
+    }
+
+    @media print {
+      @page { size: letter; margin: 0.45in; }
+
+      body { background: #fff; color: #111; font-size: 10pt; }
+      .ambient { display: none; }
+      .shell { width: 100%; padding: 0; }
+
+      .masthead {
+        min-height: 0;
+        padding: 24px;
+        border: 1px solid #ccc;
+        background: #173c42 !important;
+        box-shadow: none;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      h1 { background: none; color: #fff; -webkit-text-fill-color: #fff; }
+      .countdown, .arc-plane { display: none !important; }
+      .sheet-overlay, .guide-open { display: none !important; }
+      .toolbar, .overview-grid, .legend, .trip-footer { display: none; }
+      .itinerary-heading { margin: 20px 0 10px; }
+      .itinerary-heading h2 { color: #111; }
+      .days { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+      .day-card {
+        background: #fff;
+        border-color: #d5dbe0;
+        box-shadow: none;
+        transform: none !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .day-title h3, .event-body strong, .date-tile strong { color: #17212b; }
+      .day-title p, .event-body p, .event-time, .reservation-copy span { color: #5e6b76; }
+      .day-header, .event { border-color: #edf0f2; }
+      .tag.travel { background: #eaf2fb; color: #1f558d; box-shadow: none; }
+      .tag.fixed { background: #faece8; color: #a63827; box-shadow: none; }
+      .tag.flexible { background: #e6f4f2; color: #096a65; box-shadow: none; }
+      .tag.hotel { background: #f0ecf8; color: #634591; box-shadow: none; }
+      .note-strip { background: #fff4d6; color: #674a16; }
+      .note-strip strong { color: #674a16; }
+      .day-header { padding: 11px 13px; }
+      .schedule { padding: 4px 13px 8px; }
+      .event { grid-template-columns: 76px 1fr; padding: 7px 0; }
+      .note-strip { margin: 0 13px 11px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <main class="shell">
+    <header class="masthead">
+      <div class="masthead-content">
+        <p class="eyebrow">Aug 20-30, 2026</p>
+        <h1>Asia Trip</h1>
+        <p class="subtitle">Eleven days across Taipei, Seoul, Kyoto, and Osaka, with five dedicated market-food nights, standout dinners, neighborhood walks, and a night at Koshien Stadium.</p>
+
+        <div class="route-arc" role="img" aria-label="Flight route: Houston to San Francisco to Taipei to Seoul to Kyoto via Osaka to Tokyo to Los Angeles">
+          <svg viewBox="0 0 700 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#5ea4ff"/>
+                <stop offset="30%" stop-color="#34d1b6"/>
+                <stop offset="55%" stop-color="#ff6f59"/>
+                <stop offset="80%" stop-color="#f3b23a"/>
+                <stop offset="100%" stop-color="#a98ef5"/>
+              </linearGradient>
+            </defs>
+            <path class="arc-path" d="M 10 66 C 100 18, 190 18, 265 44 C 330 66, 360 66, 420 44 C 480 22, 520 22, 570 40 C 610 54, 640 60, 690 52"/>
+            <g class="arc-stop" style="animation-delay:0.6s"><circle cx="10" cy="66" r="5" fill="#5ea4ff"/><text x="10" y="90">IAH</text></g>
+            <g class="arc-stop" style="animation-delay:0.9s"><circle cx="128" cy="29" r="5" fill="#5ea4ff"/><text x="128" y="14">SFO</text></g>
+            <g class="arc-stop" style="animation-delay:1.3s"><circle cx="265" cy="44" r="6" fill="#34d1b6"/><text x="265" y="70">TPE</text><text class="arc-sub" x="265" y="84">3 nights</text></g>
+            <g class="arc-stop" style="animation-delay:1.7s"><circle cx="420" cy="44" r="6" fill="#ff6f59"/><text x="420" y="24">ICN</text><text class="arc-sub" x="420" y="10">2 nights</text></g>
+            <g class="arc-stop" style="animation-delay:2.1s"><circle cx="540" cy="29" r="6" fill="#f3b23a"/><text x="540" y="14">KIX</text><text class="arc-sub" x="540" y="52">Kyoto 4 nights</text></g>
+            <g class="arc-stop" style="animation-delay:2.4s"><circle cx="620" cy="55" r="5" fill="#f3b23a"/><text x="620" y="80">HND</text></g>
+            <g class="arc-stop" style="animation-delay:2.7s"><circle cx="690" cy="52" r="5" fill="#a98ef5"/><text x="690" y="77">LAX</text></g>
+            <g class="arc-plane"><path d="M 0 0 L 14 4 L 0 8 L 3 4 Z" fill="#ffe9c4"/><circle cx="14" cy="4" r="7" fill="rgba(255,233,196,0.18)"/></g>
+          </svg>
+        </div>
+
+        <div class="countdown" id="countdown" aria-live="polite">
+          <span class="countdown-label" id="cd-label">Wheels up in</span>
+          <div class="countdown-tiles" id="cd-tiles">
+            <div class="cd-tile"><strong id="cd-d">--</strong><span>Days</span></div>
+            <div class="cd-tile"><strong id="cd-h">--</strong><span>Hours</span></div>
+            <div class="cd-tile"><strong id="cd-m">--</strong><span>Min</span></div>
+            <div class="cd-tile"><strong id="cd-s">--</strong><span>Sec</span></div>
+          </div>
+          <span class="trip-live" id="trip-live"><span class="pulse"></span><span id="trip-live-text"></span></span>
+        </div>
+
+        <div class="masthead-stats" aria-label="Trip overview">
+          <div class="masthead-stat"><strong class="count-up" data-count="11">0</strong><span>Calendar days</span></div>
+          <div class="masthead-stat"><strong class="count-up" data-count="4">0</strong><span>Destinations</span></div>
+          <div class="masthead-stat"><strong class="count-up" data-count="9">0</strong><span>Hotel nights</span></div>
+          <div class="masthead-stat"><strong class="count-up" data-count="5">0</strong><span>Fixed events</span></div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="toolbar" aria-label="Itinerary sections">
+      <div class="jump-links" id="jump-links">
+        <a href="#day-1" data-target="day-1">Start</a>
+        <a href="#taipei" data-target="taipei">Taipei</a>
+        <a href="#seoul" data-target="seoul">Seoul</a>
+        <a href="#kyoto" data-target="kyoto">Kyoto + Osaka</a>
+        <a href="#homebound" data-target="homebound">Homebound</a>
+      </div>
+      <div class="toolbar-right" role="group" aria-label="Filter events by type">
+        <button class="filter-chip f-all" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-chip f-travel" type="button" data-filter="travel" aria-pressed="false">Travel</button>
+        <button class="filter-chip f-fixed" type="button" data-filter="fixed" aria-pressed="false">Fixed</button>
+        <button class="filter-chip f-flexible" type="button" data-filter="flexible" aria-pressed="false">Flexible</button>
+        <button class="print-button" type="button" onclick="window.print()" aria-label="Print itinerary">Print</button>
+      </div>
+      <div class="scroll-progress" aria-hidden="true"><i id="progress-bar"></i></div>
+    </nav>
+
+    <section class="overview-grid" aria-label="Trip summary">
+      <article class="overview-card reveal">
+        <p class="section-kicker">Route overview</p>
+        <h2>Four stops, one eastbound arc</h2>
+        <div class="route-visual" role="img" aria-label="Three nights in Taipei, two nights in Seoul, four nights in Kyoto with an Osaka day trip, then Tokyo for the flight home">
+          <div class="route-stop">
+            <div class="route-dot"></div>
+            <strong>Taipei</strong>
+            <span>3 nights</span>
+          </div>
+          <div class="route-stop">
+            <div class="route-dot"></div>
+            <strong>Seoul</strong>
+            <span>2 nights</span>
+          </div>
+          <div class="route-stop">
+            <div class="route-dot"></div>
+            <strong>Kyoto</strong>
+            <span>4 nights</span>
+          </div>
+          <div class="route-stop">
+            <div class="route-dot"></div>
+            <strong>Tokyo</strong>
+            <span>Transit</span>
+          </div>
+        </div>
+      </article>
+
+      <aside class="overview-card reveal">
+        <p class="section-kicker">Booked highlights</p>
+        <h2>Key reservations</h2>
+        <ul class="reservation-list">
+          <li>
+            <span class="reservation-date">Aug 25</span>
+            <span class="reservation-copy"><strong>Seoul city tour</strong><span>Tentatively 10:00 a.m.</span></span>
+          </li>
+          <li>
+            <span class="reservation-date">Aug 27</span>
+            <span class="reservation-copy"><strong>Withlocals Kyoto tour</strong><span>Tentatively 9:30 a.m.</span></span>
+          </li>
+          <li>
+            <span class="reservation-date">Aug 27</span>
+            <span class="reservation-copy"><strong>Kobe Beef Mouriya</strong><span>Gion, 7:30 p.m.</span></span>
+          </li>
+          <li>
+            <span class="reservation-date">Aug 28</span>
+            <span class="reservation-copy"><strong>Hanshin Tigers baseball</strong><span>Koshien Stadium, 6:00 p.m.</span></span>
+          </li>
+          <li>
+            <span class="reservation-date">Aug 29</span>
+            <span class="reservation-copy"><strong>Gion Sushi Matsumoto</strong><span>2 guests, 7:00 p.m.</span></span>
+          </li>
+        </ul>
+      </aside>
+    </section>
+
+    <div class="itinerary-heading">
+      <div>
+        <p class="section-kicker">Day by day</p>
+        <h2>The complete itinerary</h2>
+      </div>
+      <div class="legend" aria-label="Schedule legend">
+        <span class="legend-item"><span class="legend-dot travel"></span>Travel</span>
+        <span class="legend-item"><span class="legend-dot fixed"></span>Fixed reservation</span>
+        <span class="legend-item"><span class="legend-dot flexible"></span>Flexible plan</span>
+      </div>
+    </div>
+
+    <section class="days" aria-label="Daily itinerary">
+      <article class="day-card travel-day" id="day-1">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-20"><span>Thu</span><strong>20</strong></time>
+          <div class="day-title"><h3>Houston to Taipei</h3><p>Via San Francisco &middot; Overnight in flight</p></div>
+          <span class="day-number">Day 1</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">Daytime</div>
+            <div class="event-body"><div class="event-topline"><strong>Houston to San Francisco</strong><span class="tag travel">Travel</span></div><p>Begin the westbound journey and connect at SFO.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">2:40 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>UA 871 &middot; SFO to TPE</strong><span class="tag travel">Flight</span></div><p>Overnight transpacific flight; scheduled arrival Friday at 6:45 p.m.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card taipei" id="taipei">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-21"><span>Fri</span><strong>21</strong></time>
+          <div class="day-title"><h3>Arrive in Taipei</h3><p>Grand Hyatt Taipei &middot; Night 1 of 3</p></div>
+          <span class="day-number">Day 2</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">6:45 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Arrive at TPE</strong><span class="tag travel">Flight</span></div><p>Transfer into the city and check in at Grand Hyatt Taipei.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">9:15 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Raohe Night Market</strong><span class="tag fixed">Food night</span></div><p>Planned for 9:15 p.m.-10:45 p.m. after hotel check-in. Start with the famous black pepper bun and keep the visit compact after the flight.</p><button class="guide-open" type="button" data-guide="raohe" data-city="taipei">Stall guide</button></div>
+          </div>
+        </div>
+        <div class="note-strip"><strong>Arrival note</strong><span>This is the most timing-sensitive market night; go directly after check-in while Raohe is still lively.</span></div>
+      </article>
+
+      <article class="day-card taipei">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-22"><span>Sat</span><strong>22</strong></time>
+          <div class="day-title"><h3>Taipei Highlights</h3><p>Grand Hyatt Taipei &middot; Night 2 of 3</p></div>
+          <span class="day-number">Day 3</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">10:00 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Taipei 101 Observatory</strong><span class="tag flexible">Plan</span></div><p>Start at opening for city views and finish around 11:30 a.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">12:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Lan Jia Gua Bao &middot; Gongguan</strong><span class="tag flexible">Food</span></div><p>Take the Red line to Chiang Kai-shek Memorial Hall, then the Green line to Gongguan, about 25 minutes. Order the zonghe half-fat/half-lean gua bao and four-herb soup. Michelin Bib Gourmand; Cash only. Keep this snack stop to about 30 minutes.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">1:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Yongkang Street + Tian Jin Onion Pancake</strong><span class="tag flexible">Explore</span></div><p>Ride from Gongguan through Guting to Dongmen, about 10 minutes. Tian Jin Onion Pancake is on Lane 6, just off the main street; leave time for the surrounding shops and cafes.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">4:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Chiang Kai-shek Memorial Hall</strong><span class="tag flexible">Explore</span></div><p>Travel one stop on the Red line from Dongmen, or walk about 10 minutes from Yongkang Street.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">6:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Shilin Night Market</strong><span class="tag fixed">Food night</span></div><p>Take the Red line directly from Chiang Kai-shek Memorial Hall to Jiantan, about 20 minutes. Explore from 6:30 p.m.-9:30 p.m. for the city's largest mix of food stalls, shopping streets, and crowds.</p><button class="guide-open" type="button" data-guide="shilin" data-city="taipei">Stall guide</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card taipei">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-23"><span>Sun</span><strong>23</strong></time>
+          <div class="day-title"><h3>Din Tai Fung + Jiufen</h3><p>Grand Hyatt Taipei &middot; Night 3 of 3</p></div>
+          <span class="day-number">Day 4</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">10:15 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Early Din Tai Fung lunch</strong><span class="tag flexible">Plan</span></div><p>Arrive around 10:15-10:30 a.m.; use the nearby Xinsheng Branch for a seated meal.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">Afternoon</div>
+            <div class="event-body"><div class="event-topline"><strong>Jiufen</strong><span class="tag travel">Day trip</span></div><p>Old streets, small shops, tea houses, hillside views, and lanterns around dusk; return toward Taipei after sunset.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">8:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Ningxia Night Market</strong><span class="tag fixed">Food night</span></div><p>Planned for 8:30 p.m.-10:15 p.m. after returning from Jiufen. Make this the focused food stop for classic Taipei snacks and acclaimed stalls.</p><button class="guide-open" type="button" data-guide="ningxia" data-city="taipei">Stall guide</button></div>
+          </div>
+        </div>
+        <div class="note-strip"><strong>Dining note</strong><span>The original Xinyi storefront is takeout-only; Xinsheng is the practical seated option nearby.</span></div>
+      </article>
+
+      <article class="day-card travel-day" id="seoul">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-24"><span>Mon</span><strong>24</strong></time>
+          <div class="day-title"><h3>Taipei to Seoul</h3><p>Grand Hyatt Seoul &middot; Night 1 of 2</p></div>
+          <span class="day-number">Day 5</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">Morning</div>
+            <div class="event-body"><div class="event-topline"><strong>Check out + transfer to TPE</strong><span class="tag hotel">Hotel</span></div><p>Leave Grand Hyatt Taipei with time for the airport.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">12:25 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>OZ 712 &middot; TPE to ICN</strong><span class="tag travel">Flight</span></div><p>Scheduled arrival in Seoul at 3:55 p.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">6:15 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Check in at Grand Hyatt Seoul</strong><span class="tag hotel">Hotel</span></div><p>Transfer from ICN and drop bags; the 3:55 p.m. landing puts you at the hotel around 6:00-6:30 p.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">7:15 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Myeongdong street food</strong><span class="tag fixed">Food night</span></div><p>Short taxi to Myeongdong Station Exit 6, then graze the carts toward the Cathedral from 7:15-9:45 p.m., with Myeongdong Kyoja as the sit-down anchor.</p><button class="guide-open" type="button" data-guide="myeongdong" data-city="seoul">Stall guide</button></div>
+          </div>
+        </div>
+        <div class="note-strip"><strong>Cart curfew</strong><span>Most Myeongdong carts pack up around 10:00 p.m.; hit the carts first and sit down second.</span></div>
+      </article>
+
+      <article class="day-card seoul">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-25"><span>Tue</span><strong>25</strong></time>
+          <div class="day-title"><h3>Seoul in Focus</h3><p>Grand Hyatt Seoul &middot; Night 2 of 2</p></div>
+          <span class="day-number">Day 6</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">10:00 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>2-hour Seoul tour</strong><span class="tag fixed">Tentative</span></div><p>Planned for approximately 10:00 a.m.-12:00 p.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">Afternoon</div>
+            <div class="event-body"><div class="event-topline"><strong>Central Seoul exploration</strong><span class="tag flexible">Explore</span></div><p>Keep the afternoon open for nearby neighborhoods and sightseeing after the tour.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">5:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Gwangjang Market Food Alley</strong><span class="tag fixed">Food night</span></div><p>Planned for 5:30 p.m.-7:30 p.m. for mung bean pancakes, mayak gimbap, noodles, and other market specialties.</p><button class="guide-open" type="button" data-guide="gwangjang" data-city="seoul">Stall guide</button></div>
+          </div>
+          <div class="event">
+            <div class="event-time">8:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Cocktail bars</strong><span class="tag flexible">Options</span></div><p>From 8:30 p.m. onward: Zest, Cham Bar, Alice, and Le Chamber are on the shortlist.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card travel-day">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-26"><span>Wed</span><strong>26</strong></time>
+          <div class="day-title"><h3>Seoul to Kyoto</h3><p>Via Osaka KIX &middot; Kyoto night 1 of 4</p></div>
+          <span class="day-number">Day 7</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">Daytime</div>
+            <div class="event-body"><div class="event-topline"><strong>Free time in Seoul</strong><span class="tag flexible">Flexible</span></div><p>Check out, enjoy the city, then transfer to Gimpo Airport.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">5:40 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>OZ 1165 &middot; GMP to KIX</strong><span class="tag travel">Flight</span></div><p>Scheduled arrival at Kansai International Airport at 7:20 p.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">Late evening</div>
+            <div class="event-body"><div class="event-topline"><strong>Transfer to The Chapter Kyoto</strong><span class="tag hotel">Hotel</span></div><p>Late arrival and check-in for the four-night Kyoto stay.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card kyoto" id="kyoto">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-27"><span>Thu</span><strong>27</strong></time>
+          <div class="day-title"><h3>Higashiyama Kyoto</h3><p>The Chapter Kyoto &middot; Night 2 of 4</p></div>
+          <span class="day-number">Day 8</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">9:30 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Withlocals Kyoto tour</strong><span class="tag fixed">Tentative</span></div><p>Two-hour private tour, planned for approximately 9:30-11:30 a.m.; follow the confirmed guide route and avoid duplicating its stops later.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">11:45 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Nishiki Market lunch</strong><span class="tag flexible">Food</span></div><p>Graze through the market at a relaxed pace until about 1:30 p.m., with no afternoon rush to beat.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">2:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Kiyomizu-dera</strong><span class="tag flexible">Temple</span></div><p>Taxi up the hill for the wooden stage, hillside views, and Otowa waterfall.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">3:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Sannenzaka + Ninenzaka</strong><span class="tag flexible">Walk</span></div><p>Walk downhill through the preserved streets and Nene-no-Michi, with unhurried time for shops and a matcha or kakigori break.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">5:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Gion Shirakawa</strong><span class="tag flexible">Explore</span></div><p>Spend the early-evening light along Gion's canal-side lanes before dinner.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">7:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Kobe Beef Mouriya in Gion</strong><span class="tag fixed">Dinner</span></div><p>Evening reservation in Kyoto's Gion district.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card kyoto">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-28"><span>Fri</span><strong>28</strong></time>
+          <div class="day-title"><h3>Arashiyama + Osaka + Koshien</h3><p>The Chapter Kyoto &middot; Night 3 of 4</p></div>
+          <span class="day-number">Day 9</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">6:15 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Grab-and-go breakfast</strong><span class="tag flexible">Food</span></div><p>Hotel breakfast begins too late for the crowd-free Arashiyama start, so take a light breakfast for the taxi ride.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">6:45 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Taxi to Arashiyama</strong><span class="tag travel">Taxi</span></div><p>Aim to arrive around 7:15 a.m. for the quietest part of the morning.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">7:15 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Arashiyama bamboo grove</strong><span class="tag flexible">Explore</span></div><p>Walk the bamboo grove, visit Nonomiya Shrine, and continue toward Togetsukyo Bridge.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">8:30 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Tenryu-ji garden</strong><span class="tag flexible">Temple</span></div><p>Enter at opening and focus on the garden; finish around 9:25 a.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">9:45 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Arashiyama to Osaka</strong><span class="tag travel">Train</span></div><p>JR Sagano Line to Kyoto Station, then JR Special Rapid to Osaka; target arrival around 10:50 a.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">11:15 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Osaka Castle</strong><span class="tag flexible">Explore</span></div><p>Allow about 75 minutes for the grounds, main keep, and city views.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">1:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Kuromon Market lunch</strong><span class="tag flexible">Food</span></div><p>Spend about an hour grazing on seafood, wagyu skewers, fruit, and other Osaka specialties.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">2:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Dotonbori + Hozenji Yokocho</strong><span class="tag flexible">Explore</span></div><p>Walk the canal, Glico sign, Hozenji Yokocho, and the lower end of Shinsaibashi.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">3:45 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Early Osaka dinner</strong><span class="tag flexible">Food</span></div><p>Choose okonomiyaki, kushikatsu, or another quick meal around Namba before the game.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">4:40 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Osaka-Namba to Koshien</strong><span class="tag travel">Train</span></div><p>Use Hanshin service toward Koshien and aim to reach the stadium around 5:15 p.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">6:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Hanshin Tigers vs. Yomiuri Giants</strong><span class="tag fixed">Tickets</span></div><p>2 tickets, SMBC Seat, third-base side. After the game, use Hanshin Koshien to Osaka-Umeda, then JR to Kyoto.</p></div>
+          </div>
+        </div>
+        <div class="note-strip"><strong>Postgame route</strong><span>Stay with Hanshin Koshien Station; JR Koshienguchi is not a practical stadium walk.</span></div>
+      </article>
+
+      <article class="day-card kyoto">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-29"><span>Sat</span><strong>29</strong></time>
+          <div class="day-title"><h3>Fushimi Inari + Gion + Sushi</h3><p>The Chapter Kyoto &middot; Night 4 of 4</p></div>
+          <span class="day-number">Day 10</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">6:45 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Leave for Fushimi Inari</strong><span class="tag travel">Train</span></div><p>Walk to Jingu-Marutamachi and take the Keihan line south.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">7:10 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Fushimi Inari</strong><span class="tag flexible">Shrine</span></div><p>Climb through the Senbon Torii to Yotsutsuji at an easy pace with time to linger for photos; head back down around 8:45 a.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">9:00 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Tofuku-ji</strong><span class="tag flexible">Temple</span></div><p>Optional stop one Keihan station north: Zen gardens and the Tsutenkyo bridge open at 9:00 a.m., about 45 minutes. Skip if you would rather head straight back.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">10:30 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Hotel + coffee break</strong><span class="tag hotel">Recovery</span></div><p>Ride the Keihan back and take a slow late morning out of the August heat.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">12:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Pontocho + downtown lunch</strong><span class="tag flexible">Food</span></div><p>Walk the narrow Pontocho alley and pick a relaxed lunch around Kawaramachi or Kiyamachi.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">2:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Sanjusangendo</strong><span class="tag flexible">Temple</span></div><p>Moved from Thursday to keep both days lighter. Allow about 45-60 minutes for the hall and its 1,001 Kannon statues; photography is not permitted inside.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">3:30 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Kennin-ji</strong><span class="tag flexible">Temple</span></div><p>Short taxi north to Kyoto's oldest Zen temple, tucked inside Gion: twin dragons ceiling and quiet gardens, steps from tonight's dinner.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">4:45 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Hotel reset</strong><span class="tag hotel">Recovery</span></div><p>Shower, cool down, and rest before leaving for Gion.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">7:00 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Gion Sushi Matsumoto</strong><span class="tag fixed">Dinner</span></div><p>2 guests &middot; JPY 28,600 course &middot; Reservation under Rodrigo.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card homebound" id="homebound">
+        <header class="day-header">
+          <time class="date-tile" datetime="2026-08-30"><span>Sun</span><strong>30</strong></time>
+          <div class="day-title"><h3>Kyoto to Tokyo to Home</h3><p>Shinkansen + flight via Los Angeles</p></div>
+          <span class="day-number">Day 11</span>
+        </header>
+        <div class="schedule">
+          <div class="event">
+            <div class="event-time">6:30 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Early checkout</strong><span class="tag hotel">Hotel</span></div><p>Leave The Chapter Kyoto around 6:30-6:40 a.m.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">7:06 a.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>Nozomi 70 &middot; Kyoto to Tokyo</strong><span class="tag travel">Train</span></div><p>Scheduled arrival at Tokyo Station at 9:15 a.m.; continue to HND.</p></div>
+          </div>
+          <div class="event">
+            <div class="event-time">6:10 p.m.</div>
+            <div class="event-body"><div class="event-topline"><strong>UA 38 &middot; HND to LAX</strong><span class="tag travel">Flight</span></div><p>Scheduled arrival in Los Angeles at 12:30 p.m. the same calendar day.</p></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="sheet-overlay" id="sheet-overlay" hidden>
+      <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+        <button class="sheet-close" type="button" aria-label="Close guide">&times;</button>
+        <div class="sheet-content" id="sheet-content"></div>
+      </div>
+    </div>
+
+    <template id="guide-raohe">
+      <div class="guide">
+        <p class="guide-kicker">Night market guide &middot; Fri Aug 21 &middot; 9:15-10:45 p.m.</p>
+        <h2 id="sheet-title">Raohe Street Night Market</h2>
+        <div class="guide-meta">
+          <span class="meta-chip">East gate by Songshan Ciyou Temple &middot; taxi ~15-20 min or MRT Songshan Exit 5</span>
+          <span class="meta-chip">Cash only &middot; NT$100 notes</span>
+          <span class="meta-chip">Budget NT$400-600 pp</span>
+        </div>
+        <p class="guide-lede">One straight ~600 m lane between two gates: a single one-pass loop with no backtracking. Arriving at 9:15 p.m. is actually calmer than the 7-9 p.m. peak, but a few stars sell out late &mdash; hit the pepper bun and Mochi Baby early. Former "Bib Gourmand" stickers here are mostly lapsed (2019-2024); go for the food, not the medal.</p>
+        <h3>The hit list &middot; walking order from the east gate</h3>
+        <ol class="stall-list">
+          <li><div class="stall-top"><strong>Fuzhou Shizu Black Pepper Bun</strong><span class="stall-price">NT$60-70</span><span class="stall-star">&#9733;</span></div><p>Immediately inside the east gate, middle island, roped queue. Charcoal clay-oven pork and spring-onion bun; the line moves fast and the filling is molten &mdash; eat carefully and immediately.</p></li>
+          <li><div class="stall-top"><strong>A-Kuo Lu Wei</strong><span class="stall-price">NT$60-150</span></div><p>Just outside the east gate: point-and-pick braised duck wings, tofu skin, and radish cake. Skippable if short on time.</p></li>
+          <li><div class="stall-top"><strong>Chen Dong Ribs Medicinal Herb Soup</strong><span class="stall-price">~NT$100</span></div><p>Middle island, second block &mdash; follow the aromatic steam. Restorative pork-rib herbal soup, perfect after a long flight.</p></li>
+          <li><div class="stall-top"><strong>Xiagang or Shi Boss stinky tofu</strong><span class="stall-price">NT$60-70</span></div><p>Big sit-down sections mid-market; locals often rate Xiagang higher. Say "bu yao ya xie" to skip the duck blood. Good rest stop.</p></li>
+          <li><div class="stall-top"><strong>Dongfahao</strong><span class="stall-price">NT$60-80</span></div><p>Right side, mid-market: 80-year-recipe oyster and intestine vermicelli, lighter than most because it is not cornstarch-thickened.</p></li>
+          <li><div class="stall-top"><strong>Mochi Baby (Ma Shu Bao Bao)</strong><span class="stall-price">~NT$50</span><span class="stall-star">&#9733;</span></div><p>Skinny red stall mid-market &mdash; listen for the click of the mochi press. Only ~150 portions a day, so it may be sold out by 9:15; grab it the moment you pass.</p></li>
+          <li><div class="stall-top"><strong>Little Master's Big Chicken Cutlet</strong><span class="stall-price">~NT$95</span></div><p>Left side near the far end: one oversized jipai, original or spicy, crispy and shareable.</p></li>
+          <li><div class="stall-top"><strong>Master An's Fire &amp; Ice Pineapple Bun</strong><span class="stall-price">NT$60-90</span></div><p>Final block: hot bolo bun stuffed with cold ice cream (taro, vanilla, mango) for the walk out.</p></li>
+        </ol>
+        <div class="guide-cols">
+          <div class="guide-block"><h4>If you only have time for 3</h4><p>Pepper bun &middot; Chen Dong ribs soup (or Xiagang stinky tofu) &middot; Little Master's chicken cutlet. Add Mochi Baby if it is still open.</p></div>
+          <div class="guide-block"><h4>Good to know</h4><p>Fried pork chops reportedly sell out before 9 p.m. Walk in keeping to the right, return on the other side. Open daily to ~11 p.m.-midnight.</p></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="guide-shilin">
+      <div class="guide">
+        <p class="guide-kicker">Night market guide &middot; Sat Aug 22 &middot; 6:30-9:30 p.m.</p>
+        <h2 id="sheet-title">Shilin Night Market</h2>
+        <div class="guide-meta">
+          <span class="meta-chip">MRT Jiantan Exit 1 &middot; 5-min walk</span>
+          <span class="meta-chip">Cash for street stalls &middot; some B1 vendors take cards</span>
+          <span class="meta-chip">Budget NT$500-800 pp</span>
+        </div>
+        <p class="guide-lede">The biggest and most touristy of the three &mdash; worth one visit for scale, but be selective. Saturday 6:30-9:30 p.m. is peak crowds. The underground B1 food court (No. 101 Jihe Rd) reopened April 2025 after a 2+ year renovation: 539 stalls, air-conditioned &mdash; your heat or rain refuge.</p>
+        <h3>The hit list &middot; loop from Jiantan Exit 1</h3>
+        <ol class="stall-list">
+          <li><div class="stall-top"><strong>Hot-Star Large Fried Chicken</strong><span class="stall-price">~NT$90</span><span class="stall-star">&#9733;</span></div><p>Main strip near Cixian Temple: the original bigger-than-your-face XXL cutlet. Shares between 2-3; the line moves fast.</p></li>
+          <li><div class="stall-top"><strong>Guan Zheng-zong Small Sausage in Big Sausage</strong><span class="stall-price">NT$50-70</span></div><p>Grilled Taiwanese sausage inside a glutinous-rice bun; pick garlic, spicy, or satay. Quintessential Shilin.</p></li>
+          <li><div class="stall-top"><strong>Zhong Cheng Hao oyster omelette</strong><span class="stall-price">NT$60-80</span></div><p>Near the underground food court entrance; crisp edges, gooey center, sweet-savory chili sauce.</p></li>
+          <li><div class="stall-top"><strong>Chung Chia Sheng Jian Bao</strong><span class="stall-price">~NT$32 each</span><span class="stall-star">&#9733;</span></div><p>38 Xiaodong St: Michelin-recognized Shanghai pan-fried buns with deeply browned bottoms. Closed Wednesdays &mdash; open Saturday.</p></li>
+          <li><div class="stall-top"><strong>Good Friend Cold Noodles</strong><span class="stall-price">NT$50-65</span></div><p>31 Danan Rd: sesame-peanut cold noodles plus egg-drop miso soup &mdash; refreshing in August heat. Closed Thursdays &mdash; open Saturday.</p></li>
+          <li><div class="stall-top"><strong>B1 food court finisher</strong><span class="stall-price">varies</span></div><p>Finish downstairs in the A/C: mixed oyster vermicelli ("zonghe mianxian, large"), stinky tofu, shrimp rolls, dessert. Picture menus, sit-down comfort.</p></li>
+        </ol>
+        <div class="guide-cols">
+          <div class="guide-block"><h4>If you only have time for 3</h4><p>Hot-Star fried chicken &middot; small-sausage-in-big-sausage &middot; Zhong Cheng Hao oyster omelette. Add the sheng jian bao if the line is short.</p></div>
+          <div class="guide-block"><h4>Skip</h4><p>Generic beef-cube, papaya-milk, and novelty stalls on the tourist strip; games and claw machines eat your 3-hour window.</p></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="guide-ningxia">
+      <div class="guide">
+        <p class="guide-kicker">Night market guide &middot; Sun Aug 23 &middot; 8:30-10:15 p.m.</p>
+        <h2 id="sheet-title">Ningxia Night Market</h2>
+        <div class="guide-meta">
+          <span class="meta-chip">MRT Shuanglian Exit 1 &middot; ~8-10 min walk</span>
+          <span class="meta-chip">All cash &middot; small NT$100 notes</span>
+          <span class="meta-chip">Budget NT$300-500 pp</span>
+        </div>
+        <p class="guide-lede">A compact ~200 m single lane in Datong &mdash; the best food-per-step of the trip. Sunday is one of the best nights here: most famous stalls close 1-2 weekdays but run Fri-Sun, so everything on this list is open. By 8:30 you are just past peak; do the oyster-omelette storefront and taro balls before 9 p.m.</p>
+        <h3>The hit list &middot; entrance end inward</h3>
+        <ol class="stall-list">
+          <li><div class="stall-top"><strong>Yuan Huan Pien Oyster Egg Omelette</strong><span class="stall-price">NT$70-90</span><span class="stall-star">&#9733;</span></div><p>Storefront at 46 Ningxia Rd near the entrance, serving since 1965 with a conveyor-belt pass. Do this first. Closed Tue-Wed &mdash; open Sunday.</p></li>
+          <li><div class="stall-top"><strong>Fang Chia Chicken Rice</strong><span class="stall-price">NT$30-60</span></div><p>Stall #60: shredded chicken over rice with the signature sauce &mdash; the comfort base layer before the snacks.</p></li>
+          <li><div class="stall-top"><strong>Liu Yu Zi Taro Egg Balls</strong><span class="stall-price">NT$25-30 each</span><span class="stall-star">&#9733;</span></div><p>Stall #91, the single most famous Ningxia stall: fried taro ball with salted duck-egg yolk and pork floss. The ~15-min queue forms on the back side of the stall and moves fast.</p></li>
+          <li><div class="stall-top"><strong>Lin Zhen Zhao Warm Mochi</strong><span class="stall-price">~NT$50</span></div><p>Right beside Liu Yu Zi: fresh warm mochi rolled to order in peanut or sesame powder.</p></li>
+          <li><div class="stall-top"><strong>Burst &amp; Crispy Squid</strong><span class="stall-price">NT$100-150</span></div><p>Stall #89, a few steps on: crispy-battered squid, a Ningxia specialty.</p></li>
+          <li><div class="stall-top"><strong>Rong's Pork Liver (Zhu Gan Rongzi)</strong><span class="stall-price">NT$70-100</span></div><p>Stalls #8-10: 70+ years of clean, light pork-liver soup with tender liver. Closed Mondays &mdash; open Sunday.</p></li>
+          <li><div class="stall-top"><strong>Douhua Zhuang</strong><span class="stall-price">NT$50-70</span></div><p>49 Ningxia Rd, ~60-year tofu-pudding institution over two floors; black-sesame rice balls or peanut. Runs late &mdash; the right finisher.</p></li>
+        </ol>
+        <div class="guide-cols">
+          <div class="guide-block"><h4>If you only have time for 3</h4><p>Liu Yu Zi taro egg balls &middot; Yuan Huan Pien oyster omelette &middot; Rong's pork liver soup. Dessert at Douhua Zhuang if you can.</p></div>
+          <div class="guide-block"><h4>Good to know</h4><p>Optional extras: Tong Nian papaya milk (#114) and the peanut-brittle ice-cream roll with cilantro. Compact lane, minimal backtracking.</p></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="guide-myeongdong">
+      <div class="guide">
+        <p class="guide-kicker">Street food guide &middot; Mon Aug 24 &middot; 7:15-9:45 p.m.</p>
+        <h2 id="sheet-title">Myeongdong Street Food</h2>
+        <div class="guide-meta">
+          <span class="meta-chip">Myeongdong Stn (Line 4) Exit 6 toward the Cathedral &middot; short taxi from Grand Hyatt Seoul</span>
+          <span class="meta-chip">Cash preferred &middot; confirm prices first</span>
+          <span class="meta-chip">Budget &#8361;25,000-40,000 pp with one sit-down</span>
+        </div>
+        <p class="guide-lede">Theatrical, photogenic, and a fun first night in Seoul &mdash; but pricier than local markets, so treat it as snack-hopping, not a serious meal. The hard constraint: most carts pack up around 10 p.m., so carts come first. Carts are unbranded and rotate positions; identify by the dish.</p>
+        <h3>Cart hits &middot; one item per cart, walk and eat</h3>
+        <ol class="stall-list">
+          <li><div class="stall-top"><strong>Grilled cheese lobster</strong><span class="stall-price">~&#8361;20,000</span><span class="stall-star">&#9733;</span></div><p>Half a lobster tail torched with melted cheese &mdash; the signature splurge, marked by giant plastic lobsters. Split one.</p></li>
+          <li><div class="stall-top"><strong>Gyeran-ppang egg bread</strong><span class="stall-price">&#8361;2,000-4,000</span><span class="stall-star">&#9733;</span></div><p>Oval bread baked with a whole egg inside; warm, savory-sweet, and the best value bite on the strip.</p></li>
+          <li><div class="stall-top"><strong>Tteokbokki + eomuk skewers</strong><span class="stall-price">&#8361;4,000-5,000</span></div><p>Chewy rice cakes in gochujang with fish-cake skewers on the side.</p></li>
+          <li><div class="stall-top"><strong>Korean corn dog</strong><span class="stall-price">&#8361;3,000-4,000</span></div><p>Chewy batter over sausage or mozzarella, rolled in sugar, potato cubes, or ramen crumbs.</p></li>
+          <li><div class="stall-top"><strong>Hotteok</strong><span class="stall-price">~&#8361;3,000</span></div><p>Griddled sweet pancake with brown sugar, cinnamon, and seeds &mdash; the best cheap dessert.</p></li>
+          <li><div class="stall-top"><strong>Photo ops: tanghulu, 10cm soft-serve, dalgona</strong><span class="stall-price">&#8361;4,000-5,000</span></div><p>Glassy fruit skewers, the towering cone, and the Squid Game honeycomb-carving challenge from an older couple's cart.</p></li>
+          <li><div class="stall-top"><strong>Myeongdong Kyoja &mdash; the sit-down anchor</strong><span class="stall-price">kalguksu ~&#8361;11,000</span><span class="stall-star">&#9733;</span></div><p>Bib Gourmand continuously since 2017, in the alley by Myeongdong Arts Theater. Kalguksu in rich chicken broth plus a shared plate of mandu (~&#8361;12,000), famously punchy garlic kimchi, free noodle refills. Open Monday to ~9 p.m., pre-pay kiosk, fast turnover.</p></li>
+        </ol>
+        <div class="guide-cols">
+          <div class="guide-block"><h4>If you only have time for 3 carts</h4><p>Cheese lobster &middot; egg bread &middot; hotteok &mdash; plus Kyoja if you want one proper bowl.</p></div>
+          <div class="guide-block"><h4>Sequencing</h4><p>Either carts first then Kyoja before its ~9 p.m. close, or Kyoja at 7:15 then graze until the ~10 p.m. cart pack-up. Hadongkwan (Bib Gourmand gomtang) is daytime-only &mdash; save it for a future lunch.</p></div>
+        </div>
+        <div class="guide-warn"><strong>Price check:</strong> Myeongdong has a reputation for tourist markups &mdash; confirm the price before handing over money, and favor carts with a mix of Korean and foreign customers.</div>
+      </div>
+    </template>
+
+    <template id="guide-gwangjang">
+      <div class="guide">
+        <p class="guide-kicker">Market guide &middot; Tue Aug 25 &middot; 5:30-7:30 p.m.</p>
+        <h2 id="sheet-title">Gwangjang Market Food Alley</h2>
+        <div class="guide-meta">
+          <span class="meta-chip">Jongno 5-ga Stn (Line 1) Exit 8 &middot; 3-min walk</span>
+          <span class="meta-chip">Cash is king at traditional stalls</span>
+          <span class="meta-chip">Budget &#8361;30,000-50,000 pp incl. yukhoe</span>
+        </div>
+        <p class="guide-lede">Korea's oldest permanent market (1905) and the single most rewarding stop of the trip for authenticity. Tuesday is a good day: vendors mostly rest Sun-Mon, and the Netflix noodle stall is open. The food alley runs through the center; the raw-beef (yukhoe) alley is its own lane.</p>
+        <h3>The hit list</h3>
+        <ol class="stall-list">
+          <li><div class="stall-top"><strong>Soonhee's Bindaetteok</strong><span class="stall-price">~&#8361;5,000</span><span class="stall-star">&#9733;</span></div><p>The Netflix "Street Food: Asia" mung-bean pancake stall at the central griddle hub &mdash; look for stone mills grinding beans (fresh-ground = fresh batter). Get one to-go; a ~20 cm pancake serves two, with soy dip and raw onion.</p></li>
+          <li><div class="stall-top"><strong>Cho Yonsoon's Gohyang Kalguksu</strong><span class="stall-price">&#8361;7,000-8,000</span><span class="stall-star">&#9733;</span></div><p>The Netflix "Noodle Aunty" at a crossroads in the market: hand-cut noodles in anchovy/pork-bone broth, plus her handmade mandu. Pro move: carry the bindaetteok here and eat both at her stall. Open Tue-Sat &mdash; open today.</p></li>
+          <li><div class="stall-top"><strong>Mo-nyeo-ne mayak gimbap</strong><span class="stall-price">&#8361;3,000-4,000</span></div><p>The original "drug gimbap" stall: finger-sized rolls brushed with sesame oil and that addictive mustard-soy dip. Tiny &mdash; grab a set to nibble in line.</p></li>
+          <li><div class="stall-top"><strong>Buchon Yukhoe</strong><span class="stall-price">&#8361;15,000-32,000</span><span class="stall-star">&#9733;</span></div><p>Michelin Bib Gourmand, corner of the yukhoe alley, since 1965: seasoned raw beef with egg yolk and pear (~&#8361;20,000), yukhoe bibimbap (~&#8361;15,000), or the live-octopus tangtangi (~&#8361;32,000). Open by 5 p.m.; a weekday queue is manageable, and adjacent houses are fine substitutes.</p></li>
+          <li><div class="stall-top"><strong>Soondae</strong><span class="stall-price">&#8361;5,000-8,000</span></div><p>Glutinous-rice-and-glass-noodle style, sliced with head-meat and dipping salt. Confirm price and portion before ordering &mdash; this category was at the center of the 2025 overcharging incident.</p></li>
+          <li><div class="stall-top"><strong>Japchae + sweets finisher</strong><span class="stall-price">&#8361;5,000-6,000</span></div><p>A cup of glass noodles (or the deep-fried japchae roll), then hotteok or walnut cakes near the exits. The Cheonggyecheon stream beside the market makes a pleasant night walk out.</p></li>
+        </ol>
+        <div class="guide-cols">
+          <div class="guide-block"><h4>If you only have time for 3</h4><p>Soonhee's bindaetteok &middot; Cho Yonsoon's kalguksu + mandu &middot; Buchon Yukhoe.</p></div>
+          <div class="guide-block"><h4>Local rule of thumb</h4><p>Sit where the most Korean grandmothers are eating. Bindaetteok pairs classically with makgeolli.</p></div>
+        </div>
+        <div class="guide-warn"><strong>Order defensively:</strong> an Oct-Nov 2025 overcharging controversy (a YouTuber filmed being overcharged; the stall was suspended) dented the market's reputation. Still excellent &mdash; just confirm prices before ordering and favor stalls busy with locals.</div>
+      </div>
+    </template>
+
+    <footer class="trip-footer">
+      <span>Asia Trip &middot; Aug 20-30, 2026</span>
+      <span>Times shown are local to each destination.</span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- Countdown / live trip status ---------- */
+      var departure = new Date("2026-08-20T09:00:00-05:00"); // IAH departure day, Houston time
+      var tripEnd = new Date("2026-08-30T12:30:00-07:00");   // LAX arrival
+      var cdLabel = document.getElementById("cd-label");
+      var cdTiles = document.getElementById("cd-tiles");
+      var live = document.getElementById("trip-live");
+      var liveText = document.getElementById("trip-live-text");
+      var elD = document.getElementById("cd-d");
+      var elH = document.getElementById("cd-h");
+      var elM = document.getElementById("cd-m");
+      var elS = document.getElementById("cd-s");
+
+      var cityByDay = {
+        20: "In transit to Taipei", 21: "Taipei", 22: "Taipei", 23: "Taipei",
+        24: "Taipei \u2192 Seoul", 25: "Seoul", 26: "Seoul \u2192 Kyoto",
+        27: "Kyoto", 28: "Kyoto + Osaka + Koshien", 29: "Kyoto", 30: "Homebound"
+      };
+
+      function pad(n) { return String(n).padStart(2, "0"); }
+
+      function tick() {
+        var now = new Date();
+        if (now < departure) {
+          var diff = departure - now;
+          elD.textContent = pad(Math.floor(diff / 86400000));
+          elH.textContent = pad(Math.floor(diff / 3600000) % 24);
+          elM.textContent = pad(Math.floor(diff / 60000) % 60);
+          elS.textContent = pad(Math.floor(diff / 1000) % 60);
+        } else if (now <= tripEnd) {
+          cdLabel.style.display = "none";
+          cdTiles.style.display = "none";
+          live.style.display = "inline-flex";
+          var dayNum = Math.floor((now - departure) / 86400000) + 1;
+          var date = 20 + dayNum - 1;
+          liveText.textContent = "Trip in progress \u00b7 Day " + Math.min(dayNum, 11) + " \u00b7 " + (cityByDay[date] || "En route");
+        } else {
+          cdLabel.style.display = "none";
+          cdTiles.style.display = "none";
+          live.style.display = "inline-flex";
+          liveText.textContent = "Trip complete \u00b7 45+ countries and counting";
+        }
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      /* ---------- Stat count-up ---------- */
+      var counters = document.querySelectorAll(".count-up");
+      if (reduceMotion) {
+        counters.forEach(function (el) { el.textContent = el.dataset.count; });
+      } else {
+        counters.forEach(function (el) {
+          var target = parseInt(el.dataset.count, 10);
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / 1200, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          }
+          setTimeout(function () { requestAnimationFrame(step); }, 700);
+        });
+      }
+
+      /* ---------- Scroll reveal ---------- */
+      var revealTargets = document.querySelectorAll(".day-card, .overview-card");
+      revealTargets.forEach(function (el) { el.classList.add("reveal"); });
+
+      if (!("IntersectionObserver" in window) || reduceMotion) {
+        revealTargets.forEach(function (el) { el.classList.add("in"); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              var events = entry.target.querySelectorAll(".event");
+              events.forEach(function (ev, i) {
+                ev.style.opacity = "0";
+                ev.style.transform = "translateY(10px)";
+                setTimeout(function () {
+                  ev.style.transition = "opacity 0.45s ease, transform 0.45s ease";
+                  ev.style.opacity = "";
+                  ev.style.transform = "";
+                }, 120 + i * 70);
+              });
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -60px 0px", threshold: 0.08 });
+        revealTargets.forEach(function (el) { io.observe(el); });
+      }
+
+      /* ---------- Scroll progress bar ---------- */
+      var bar = document.getElementById("progress-bar");
+      function onScroll() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- Scroll spy on jump links ---------- */
+      var links = document.querySelectorAll("#jump-links a");
+      var spyTargets = Array.prototype.map.call(links, function (a) {
+        return document.getElementById(a.dataset.target);
+      }).filter(Boolean);
+
+      function spy() {
+        var offset = window.scrollY + 130;
+        var current = null;
+        spyTargets.forEach(function (el) {
+          if (el.offsetTop <= offset) current = el.id;
+        });
+        links.forEach(function (a) {
+          a.classList.toggle("active", a.dataset.target === current);
+        });
+      }
+      window.addEventListener("scroll", spy, { passive: true });
+      spy();
+
+      /* ---------- Event filters ---------- */
+      var chips = document.querySelectorAll(".filter-chip");
+      chips.forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          var f = chip.dataset.filter;
+          var isOn = chip.getAttribute("aria-pressed") === "true";
+          chips.forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+          if (f === "all" || isOn) {
+            document.body.removeAttribute("data-filter");
+            document.querySelector(".filter-chip.f-all").setAttribute("aria-pressed", "true");
+          } else {
+            chip.setAttribute("aria-pressed", "true");
+            document.body.setAttribute("data-filter", f);
+          }
+        });
+      });
+      /* ---------- Market stall-guide sheet ---------- */
+      var overlay = document.getElementById("sheet-overlay");
+      var sheet = overlay.querySelector(".sheet");
+      var sheetContent = document.getElementById("sheet-content");
+      var closeBtn = overlay.querySelector(".sheet-close");
+      var lastFocus = null;
+
+      function openGuide(id, city) {
+        var tpl = document.getElementById("guide-" + id);
+        if (!tpl) return;
+        sheetContent.innerHTML = "";
+        sheetContent.appendChild(tpl.content.cloneNode(true));
+        sheet.classList.remove("taipei", "seoul");
+        sheet.classList.add(city);
+        overlay.hidden = false;
+        requestAnimationFrame(function () { overlay.classList.add("open"); });
+        document.body.classList.add("sheet-open");
+        sheet.scrollTop = 0;
+        lastFocus = document.activeElement;
+        closeBtn.focus();
+      }
+
+      function closeGuide() {
+        overlay.classList.remove("open");
+        document.body.classList.remove("sheet-open");
+        setTimeout(function () { overlay.hidden = true; }, 260);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll(".guide-open").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          openGuide(btn.dataset.guide, btn.dataset.city);
+        });
+      });
+      closeBtn.addEventListener("click", closeGuide);
+      overlay.addEventListener("click", function (e) { if (e.target === overlay) closeGuide(); });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !overlay.hidden) closeGuide();
+      });
+    })();
+  </script>
+</body>
+</html>
