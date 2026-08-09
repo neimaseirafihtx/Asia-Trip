@@ -16,9 +16,11 @@ Owner context: traveler departs from Houston (IAH), United 1K flyer. The page ma
    - **Aug 27 (Day 8)**: Sanjusangendo removed from this day; afternoon retimed (Kiyomizu-dera 2:00, Sannenzaka 3:30) for a slower pace ending in Gion for the 7:30 p.m. Kobe Beef Mouriya dinner.
    - **Aug 29 (Day 10)**: retitled "Fushimi Inari + Gion + Sushi". New flow: Fushimi Inari at dawn → optional Tofuku-ji 9:00 → hotel/coffee recovery block 10:30 → Pontocho lunch 12:30 → Sanjusangendo 2:00 (relocated from Aug 27) → Kennin-ji 3:30 → hotel reset 4:45 → Gion Sushi Matsumoto 7:00.
    - Global updates: subtitle, destinations stat (5→4), jump link label ("Kyoto + Osaka"), route-overview heading ("Four stops…"), aria-labels, and the JS `cityByDay` map for Aug 29. Zero "Nara" strings remain in the file.
-4. **v4 — current**: **Market stall-guide layer + new Myeongdong night.**
+4. **v4**: **Market stall-guide layer + new Myeongdong night.**
    - Added a fifth market-food night: **Myeongdong street food, Mon Aug 24, 7:15–9:45 p.m.** The Day 5 evening was split into "Check in at Grand Hyatt Seoul" (6:15 p.m., `tag hotel`) and "Myeongdong street food" (7:15 p.m., `tag fixed`), plus a note-strip warning that carts pack up ~10 p.m. Subtitle updated: "five dedicated market-food nights".
    - Added an interactive **stall-guide bottom sheet** (modal) for all five markets — Raohe, Shilin, Ningxia, Myeongdong, Gwangjang — sourced from an August 2026 deep-research food guide. Each market event has a "Stall guide" button that opens a slide-up sheet with: meta chips (transit, cash, budget), a numbered hit list in walking order (names, prices, ★ must-gets), "if you only have time for 3", tips, and defensive warnings (Myeongdong tourist markups; Gwangjang's Oct–Nov 2025 overcharging controversy).
+
+5. **v5 — current**: **The Public House booking added.** New Day 3 (Aug 22) event at 10:00 p.m. — The Public House, Xinyi (`tag fixed`, "Drinks"), 2 guests, confirmed booking under "Edgar Sanchez", phone 02 2701-0053, 143 Sec. 4 Xinyi Rd, Da'an District. Added a "Booking note" strip (online changes allowed up to one day before). Rolled the "Fixed events" stat 5→6 and prepended the reservation to the Key reservations list.
 
 ## 3. File anatomy (find by selector, not line number)
 
@@ -74,7 +76,7 @@ The visible tag text is free-form ("Flight", "Food night", "Temple"); only the c
 ## 6. JavaScript behaviors (single IIFE at the bottom)
 
 1. **Countdown / live status**: `departure = 2026-08-20T09:00:00-05:00`, `tripEnd = 2026-08-30T12:30:00-07:00`. Before departure: DD/HH/MM/SS tiles tick every second. During the trip: tiles hide and a pulsing badge shows "Trip in progress · Day N · {city}" from the `cityByDay` map (keys are calendar dates 20–30). After: "Trip complete" badge. **If dates or the Kyoto plan change, update both the Date constants and `cityByDay`.**
-2. **Stat count-up**: `.count-up[data-count]` animates 0→N on load (skipped under reduced motion). The four stats are calendar days 11, destinations 4, hotel nights 9, fixed events 5 — recount if reservations change.
+2. **Stat count-up**: `.count-up[data-count]` animates 0→N on load (skipped under reduced motion). The four stats are calendar days 11, destinations 4, hotel nights 9, fixed events 6 — recount if reservations change.
 3. **Scroll reveal**: IntersectionObserver adds `.in` to `.day-card`/`.overview-card`; events inside stagger in with inline styles that are cleared afterward (do not leave inline opacity on `.event`, it breaks filtering).
 4. **Scroll progress + scroll spy**: progress bar `#progress-bar` fills with scroll depth; jump links highlight based on `data-target` matching card ids `day-1`, `taipei`, `seoul`, `kyoto`, `homebound`. **Do not remove or rename these ids.**
 5. **Filters**: chips set `body[data-filter]`; CSS dims non-matching events via `:not(:has(.tag.X))`. Requires `:has()` support (all evergreen browsers). Clicking the active chip or "All" clears the filter.
@@ -106,7 +108,7 @@ The visible tag text is free-form ("Flight", "Food night", "Temple"); only the c
 
 - Flights: UA 871 IAH→SFO→TPE (dep Aug 20, arr TPE Aug 21 6:45 p.m.); OZ 712 TPE→ICN Aug 24 12:25 p.m. (arr 3:55 p.m.); OZ 1165 GMP→KIX Aug 26 5:40 p.m. (arr 7:20 p.m.); Nozomi 70 Kyoto→Tokyo Aug 30 7:06 a.m. (arr 9:15 a.m.); UA 38 HND→LAX Aug 30 6:10 p.m. (arr LAX 12:30 p.m. same calendar day).
 - Hotels: Grand Hyatt Taipei (3 nights), Grand Hyatt Seoul (2), The Chapter Kyoto (4).
-- Fixed reservations (5): Seoul city tour Aug 25 ~10:00 a.m. (tentative); Withlocals Kyoto tour Aug 27 ~9:30 a.m. (tentative); Kobe Beef Mouriya, Gion, Aug 27 7:30 p.m.; Hanshin Tigers vs. Yomiuri Giants, Koshien, Aug 28 6:00 p.m. (2 tickets, SMBC Seat, 3rd-base side; return via Hanshin Koshien → Osaka-Umeda → JR to Kyoto); Gion Sushi Matsumoto Aug 29 7:00 p.m. (2 guests, ¥28,600 course, reservation under "Rodrigo").
+- Fixed reservations (6): The Public House, Xinyi, Taipei, Aug 22 10:00 p.m. (2 adults, booking under "Edgar Sanchez", 02 2701-0053, 143 Sec. 4 Xinyi Rd, Da'an District; changes online up to 1 day prior); Seoul city tour Aug 25 ~10:00 a.m. (tentative); Withlocals Kyoto tour Aug 27 ~9:30 a.m. (tentative); Kobe Beef Mouriya, Gion, Aug 27 7:30 p.m.; Hanshin Tigers vs. Yomiuri Giants, Koshien, Aug 28 6:00 p.m. (2 tickets, SMBC Seat, 3rd-base side; return via Hanshin Koshien → Osaka-Umeda → JR to Kyoto); Gion Sushi Matsumoto Aug 29 7:00 p.m. (2 guests, ¥28,600 course, reservation under "Rodrigo").
 
 ## 9. Backlog / candidate next features (not yet built)
 
