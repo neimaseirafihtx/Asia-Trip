@@ -567,6 +567,30 @@
 
     .day-title p { margin-bottom: 0; color: var(--muted); font-size: 0.82rem; }
 
+    .weather-blurb {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      margin: 14px 20px 0;
+      padding: 11px 13px;
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      border-radius: 9px;
+      background: color-mix(in srgb, var(--accent) 9%, transparent);
+      color: #c8d3df;
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    .weather-blurb::before {
+      content: "\2602";
+      color: var(--accent);
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .weather-blurb strong { color: var(--ink); }
+
     .day-number {
       align-self: start;
       color: #6d7d90;
@@ -891,6 +915,7 @@
       .legend { justify-content: flex-start; margin-top: 9px; }
       .day-header { grid-template-columns: 58px 1fr; gap: 12px; padding: 16px; }
       .day-number { display: none; }
+      .weather-blurb { margin: 12px 16px 0; }
       .schedule { padding: 7px 16px 12px; }
       .event { grid-template-columns: 72px 1fr; gap: 10px; }
       .note-strip { margin-right: 16px; margin-left: 16px; }
@@ -937,6 +962,8 @@
       .day-title h3, .event-body strong, .date-tile strong { color: #17212b; }
       .day-title p, .event-body p, .event-time, .reservation-copy span { color: #5e6b76; }
       .day-header, .event { border-color: #edf0f2; }
+      .weather-blurb { margin: 9px 13px 0; padding: 8px 10px; border-color: #d8e0e6; background: #f4f7f9; color: #4f5f6c; }
+      .weather-blurb strong { color: #17212b; }
       .tag.travel { background: #eaf2fb; color: #1f558d; box-shadow: none; }
       .tag.fixed { background: #faece8; color: #a63827; box-shadow: none; }
       .tag.flexible { background: #e6f4f2; color: #096a65; box-shadow: none; }
@@ -1099,6 +1126,7 @@
           <div class="day-title"><h3>Houston to Taipei</h3><p>Via San Francisco &middot; Overnight in flight</p></div>
           <span class="day-number">Day 1</span>
         </header>
+        <div class="weather-blurb"><strong>Travel weather · Forecast checked Aug 16:</strong> Houston near 106&deg;F and San Francisco near 68&deg;F, with little rain expected. Dress for a major temperature swing between airports.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">Daytime</div>
@@ -1117,6 +1145,7 @@
           <div class="day-title"><h3>Arrive in Taipei</h3><p>Grand Hyatt Taipei &middot; Night 1 of 3</p></div>
           <span class="day-number">Day 2</span>
         </header>
+        <div class="weather-blurb"><strong>90&deg; / 79&deg;F:</strong> Hot and very humid. Showers and a thunderstorm are possible late afternoon into evening; expect about 80&deg;F around arrival.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">6:45 p.m.</div>
@@ -1136,6 +1165,7 @@
           <div class="day-title"><h3>Taipei Highlights</h3><p>Grand Hyatt Taipei &middot; Night 2 of 3</p></div>
           <span class="day-number">Day 3</span>
         </header>
+        <div class="weather-blurb"><strong>88&deg; / 78&deg;F:</strong> Mostly cloudy and very humid, with periods of afternoon rain. Keep a compact umbrella handy between stops.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">10:00 a.m.</div>
@@ -1170,6 +1200,7 @@
           <div class="day-title"><h3>Din Tai Fung + Jiufen</h3><p>Grand Hyatt Taipei &middot; Night 3 of 3</p></div>
           <span class="day-number">Day 4</span>
         </header>
+        <div class="weather-blurb"><strong>93&deg; / 80&deg;F:</strong> Very humid, with morning showers and afternoon thunderstorms possible. Jiufen is the Taipei day to watch most closely.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">10:15 a.m.</div>
@@ -1193,6 +1224,7 @@
           <div class="day-title"><h3>Taipei to Seoul</h3><p>Grand Hyatt Seoul &middot; Night 1 of 2</p></div>
           <span class="day-number">Day 5</span>
         </header>
+        <div class="weather-blurb"><strong>Taipei 96&deg; / 79&deg;F &rarr; Seoul near 91&deg;F:</strong> Spotty storms or rain before departure; Seoul stays muggy with scattered showers, but the evening currently looks comparatively clearer.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">Morning</div>
@@ -1220,6 +1252,7 @@
           <div class="day-title"><h3>Seoul in Focus</h3><p>Grand Hyatt Seoul &middot; Night 2 of 2</p></div>
           <span class="day-number">Day 6</span>
         </header>
+        <div class="weather-blurb"><strong>91&deg; / 75&deg;F:</strong> Sunny intervals, very warm and humid, with a few scattered showers. A heat advisory is in the forecast area, so pace the walking tour.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">10:00 a.m.</div>
@@ -1246,6 +1279,7 @@
           <div class="day-title"><h3>Seoul to Kyoto</h3><p>Via Osaka KIX &middot; Kyoto night 1 of 4</p></div>
           <span class="day-number">Day 7</span>
         </header>
+        <div class="weather-blurb"><strong>Seoul 85&deg; / 72&deg;F:</strong> Mostly cloudy and very humid, with a slight chance of afternoon rain. Kyoto arrival should also be cloudy and humid.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">Daytime</div>
@@ -1268,6 +1302,7 @@
           <div class="day-title"><h3>Higashiyama Kyoto</h3><p>The Chapter Kyoto &middot; Night 2 of 4</p></div>
           <span class="day-number">Day 8</span>
         </header>
+        <div class="weather-blurb"><strong>94&deg; / 76&deg;F:</strong> Cloudy, hot and very humid, with a couple of showers possible. The morning walking tour will feel intense&mdash;carry water.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">9:30 a.m.</div>
@@ -1302,6 +1337,7 @@
           <div class="day-title"><h3>Arashiyama + Osaka + Koshien</h3><p>The Chapter Kyoto &middot; Night 3 of 4</p></div>
           <span class="day-number">Day 9</span>
         </header>
+        <div class="weather-blurb"><strong>95&deg; / 77&deg;F:</strong> Very humid with rain possible; this currently looks like one of the wetter trip days. Recheck conditions before Koshien.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">6:15 a.m.</div>
@@ -1357,6 +1393,7 @@
           <div class="day-title"><h3>Fushimi Inari + Gion + Sushi</h3><p>The Chapter Kyoto &middot; Night 4 of 4</p></div>
           <span class="day-number">Day 10</span>
         </header>
+        <div class="weather-blurb"><strong>Extended Kyoto outlook:</strong> Very humid with clouds and a shower or thunderstorm possible. Forecast models still vary this far out, so check again before the dawn start.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">6:45 a.m.</div>
@@ -1403,6 +1440,7 @@
           <div class="day-title"><h3>Kyoto to Tokyo to Home</h3><p>Shinkansen + flight via Los Angeles</p></div>
           <span class="day-number">Day 11</span>
         </header>
+        <div class="weather-blurb"><strong>Tokyo 87&deg; / 76&deg;F:</strong> Mostly cloudy and very humid. A shower is possible around the early Kyoto departure, so keep rain gear accessible during the transfers.</div>
         <div class="schedule">
           <div class="event">
             <div class="event-time">6:30 a.m.</div>
